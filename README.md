@@ -1,6 +1,6 @@
 # art_comp
 
-A new Flutter project.
+Aplikasi untuk mengadakan dan mengikuti kompetisi digital art
 
 ## Getting Started
 
