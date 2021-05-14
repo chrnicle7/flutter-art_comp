@@ -1,3 +1,4 @@
+import 'package:art_comp/dashboard_page.dart';
 import 'package:art_comp/login_page.dart';
 import 'package:art_comp/register_page.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: const Color(0xFFEFEFEF)),
       darkTheme: ThemeData(brightness: Brightness.dark),
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
+      home: DashboardPage(),
     );
   }
 }
