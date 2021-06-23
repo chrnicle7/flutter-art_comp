@@ -1,9 +1,14 @@
 import 'package:art_comp/dashboard_page.dart';
+import 'package:art_comp/index_join_challenge.dart';
 import 'package:art_comp/login_page.dart';
+import 'package:art_comp/make_challenge_page.dart';
 import 'package:art_comp/register_page.dart';
 import 'package:flutter/material.dart';
+import 'package:sp_util/sp_util.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SpUtil.getInstance();
   runApp(MyApp());
 }
 
@@ -13,6 +18,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Art Competition',
+      routes: {
+        'login-page': (context) => LoginPage(),
+        'register-page': (context) => RegisterPage(),
+        'dashboard-page': (context) => DashboardPage(),
+        'make-challenge-page': (context) => MakeChallengePage(),
+        'index-join-challenge-page': (context) => IndexJoinChallenge(),
+      },
+      initialRoute: 'login-page',
       theme: ThemeData(
           // This is the theme of your application.
           //
@@ -28,7 +41,6 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: const Color(0xFFEFEFEF)),
       darkTheme: ThemeData(brightness: Brightness.dark),
       debugShowCheckedModeBanner: false,
-      home: LoginPage(),
     );
   }
 }

@@ -1,8 +1,11 @@
+import 'dart:convert';
+
+import 'package:art_comp/ApiConfig.dart';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:progress_dialog/progress_dialog.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:sp_util/sp_util.dart';
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -19,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-        backgroundColor: Colors.blueGrey[900],
+        backgroundColor: Colors.grey[900],
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -61,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                             hintText: 'password'),
                       )),
                   Container(
-                    padding: EdgeInsets.fromLTRB(25, 0, 25, 20),
+                    padding: EdgeInsets.fromLTRB(25, 0, 25, 0),
                     child: SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
@@ -78,6 +81,21 @@ class _LoginPageState extends State<LoginPage> {
                                   borderRadius: BorderRadius.circular(30))),
                         )),
                   ),
+                  Container(
+                    padding: EdgeInsets.fromLTRB(25, 0, 25, 20),
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        textStyle: const TextStyle(fontSize: 15),
+                      ),
+                      onPressed: () {
+                          Navigator.pushReplacementNamed(context, 'register-page');
+                        },
+                      child: Text(
+                        'or Register',
+                        style: TextStyle(fontSize: 15, color: Colors.white),
+                      ),
+                    ),
+                  )
                 ],
               ),
             )
@@ -98,7 +116,7 @@ class _LoginPageState extends State<LoginPage> {
       Alert(
         context: context,
         style: alertStyleEmpty,
-        title: "Email atau password masih kosong",
+        title: "Empty email or password!",
         buttons: [
           DialogButton(
             child: Text(
@@ -115,7 +133,7 @@ class _LoginPageState extends State<LoginPage> {
       return;
     }
 
-    var url = Uri.parse('http://192.168.43.209:8001/api/login');
+    var url = Uri.parse(ApiConfig.getUrl() + 'login');
     final response = await http.post(url, body: {
       'email': loginEmail.text,
       'password': loginPwd.text,
@@ -136,29 +154,17 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     if(response.statusCode == 200){
-      Alert(
-        context: context,
-        style: alertStyleSuccess,
-        title: "Login berhasil",
-        buttons: [
-          DialogButton(
-            child: Text(
-              "Close",
-              style: TextStyle(color: Colors.white, fontSize: 20),
-            ),
-            onPressed: () => Navigator.pop(context),
-            color: Color.fromRGBO(0, 179, 134, 1.0),
-            radius: BorderRadius.circular(0.0),
-          ),
-        ],
-      ).show();
+      var responseDecode = jsonDecode(response.body);
+      var data = responseDecode['data'];
+      var user = data['user'];
+      SpUtil.putInt("id_user", user['id']);
 
-      return;
+      Navigator.pushReplacementNamed(context, 'dashboard-page');
     }else{
       Alert(
         context: context,
         style: alertStyleFailed,
-        title: "Login gagal",
+        title: "Login failed!",
         buttons: [
           DialogButton(
             child: Text(
