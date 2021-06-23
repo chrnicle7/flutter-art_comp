@@ -1,11 +1,12 @@
 import 'dart:math';
 
 import 'package:art_comp/Challenge.dart';
+import 'package:art_comp/submission_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:http/http.dart' as http;
+import 'package:flutter/services.dart';
 
 class DetailJoinChallenge extends StatefulWidget {
   const DetailJoinChallenge({Key key}) : super(key: key);
@@ -84,6 +85,26 @@ class _DetailJoinChallengeState extends State<DetailJoinChallenge> {
                 )
             ),
             Container(
+                margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+                padding: EdgeInsets.all(10),
+                width: double.infinity,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    FaIcon(FontAwesomeIcons.externalLinkAlt),
+                    Container(
+                      margin: EdgeInsets.only(left: 5),
+                      child: TextButton(
+                        onPressed: () {
+                          Clipboard.setData(ClipboardData(text: challenge.furtherDescLink));
+                        },
+                        child: Text('Further Description')
+                      ),
+                    ),
+                  ],
+                )
+            ),
+            Container(
                 margin: EdgeInsets.fromLTRB(10, 5, 10, 0),
                 padding: EdgeInsets.all(10),
                 width: double.infinity,
@@ -95,6 +116,30 @@ class _DetailJoinChallengeState extends State<DetailJoinChallenge> {
                     Text(challenge.desc, style: TextStyle(fontSize: 12))
                   ],
                 )
+            ),
+            Container(
+              padding: EdgeInsets.fromLTRB(25, 50, 25, 0),
+              child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () => {
+                    Navigator.push(context,
+                      MaterialPageRoute(
+                          builder: (context) => SubmissionPage(),
+                          settings: RouteSettings(
+                              arguments: challenge,
+                          )
+                      ))
+                    },
+                    child: Text(
+                      'Add submission',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        primary: Colors.teal[400],
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10.0))),
+                  )),
             ),
           ],
         ),

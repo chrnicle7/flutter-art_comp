@@ -3,6 +3,7 @@ import 'package:art_comp/index_join_challenge.dart';
 import 'package:art_comp/login_page.dart';
 import 'package:art_comp/make_challenge_page.dart';
 import 'package:art_comp/register_page.dart';
+import 'package:art_comp/submission_page.dart';
 import 'package:flutter/material.dart';
 import 'package:sp_util/sp_util.dart';
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         'dashboard-page': (context) => DashboardPage(),
         'make-challenge-page': (context) => MakeChallengePage(),
         'index-join-challenge-page': (context) => IndexJoinChallenge(),
+        'add-submission-page': (context) => SubmissionPage()
       },
       initialRoute: 'login-page',
       theme: ThemeData(
