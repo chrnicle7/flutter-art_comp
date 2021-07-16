@@ -1,6 +1,24 @@
 # art_comp
 
-Aplikasi untuk mengadakan dan mengikuti kompetisi digital art
+Aplikasi _mobile_ untuk mengadakan dan mengikuti kompetisi _digital art_. Dibangun dengan framework Flutter (_front end_) dan Laravel (_backend_). 
+
+Fitur yang saat ini telah dikerjakan:
+1. Authentication (Login dan Register) <br>
+   <img src="https://github.com/naomihc/flutter-art_comp/blob/master/app_screenshots/1_login.jpeg" height="400">
+   <img src="https://github.com/naomihc/flutter-art_comp/blob/master/app_screenshots/1_register.jpeg" height="400">
+   <img src="https://github.com/naomihc/flutter-art_comp/blob/master/app_screenshots/1_failedmessage.jpeg" height="400">
+2. Dashboard User <br>
+    Merupakan halaman berisi menu fitur dan statistik singkat tentan data user <br>
+   <img src="https://github.com/naomihc/flutter-art_comp/blob/master/app_screenshots/2_dashboard.jpeg" height="400">
+3. Make Challenge
+    Merupakan fitur untuk membuat challenge yang nanti akan diikuti oleh participants <br>
+    <img src="https://github.com/naomihc/flutter-art_comp/blob/master/app_screenshots/3_make_challenge.jpeg" height="400">
+4. Join Challenge
+    Merupakan fitur untuk menampilkan challenge yang ada, yaitu challenge yang masa pengumpulan submissionnya masih berlangsung. <br>
+    <img src="https://github.com/naomihc/flutter-art_comp/blob/master/app_screenshots/4_join_challenge.jpeg" height="400">
+5. Make Submission
+    Merupakan fitur untuk mengumpulkan submission dari challenge yang telah dipilih peserta pada fitur Join Challenge. <br>
+    <img src="https://github.com/naomihc/flutter-art_comp/blob/master/app_screenshots/4_add_submission.jpeg" height="400">
 
 ## Getting Started
 
